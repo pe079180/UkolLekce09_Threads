@@ -22,8 +22,6 @@ public class Philosopher extends Thread {
         return result;
     }
 
-    ;
-
     public void eatPortion() {
         if (managedToTakeFork(leftFork)) {
             if (managedToTakeFork(rightFork)) {
@@ -44,7 +42,6 @@ public class Philosopher extends Thread {
                 //System.out.println("right fork blocked " + portionsToEat + " thread =" + this.getName());
                 leftFork.setForkStatus(ForkStatus.FREE);
             }
-            ;
 
         }
 
@@ -55,7 +52,7 @@ public class Philosopher extends Thread {
         while (portionsToEat > 0) {
             eatPortion();
         }
-        ;
+
     }
 
 }
