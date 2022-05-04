@@ -1,11 +1,9 @@
 package com.engeto.lekce9;
 
 public class Fork {
-    private final int order;
     private ForkStatus forkStatus = ForkStatus.FREE;
 
-    public Fork(int order) {
-        this.order = order;
+    public Fork() {
     }
 
     public ForkStatus getForkStatus() {

@@ -2,8 +2,8 @@ package com.engeto.lekce9;
 
 public class Philosopher extends Thread {
     private int portionsToEat;
-    private Fork leftFork;
-    private Fork rightFork;
+    private final Fork leftFork;
+    private final Fork rightFork;
 
     public Philosopher(String name, int portionsToEat, Fork leftFork, Fork rightFork) {
         super(name);
@@ -12,8 +12,8 @@ public class Philosopher extends Thread {
         this.rightFork = rightFork;
     }
 
-    public synchronized boolean managedToTakeFork(Fork fork) {
-        //synchronizace tady, nemoho brát 2 současně
+    public synchronized boolean pickUpFork(Fork fork) {
+        //synchronizace tady, nemohou brát 2 současně
         boolean result = false;
         if (fork.getForkStatus() == ForkStatus.FREE) {
             fork.setForkStatus(ForkStatus.TAKEN);
@@ -23,8 +23,8 @@ public class Philosopher extends Thread {
     }
 
     public void eatPortion() {
-        if (managedToTakeFork(leftFork)) {
-            if (managedToTakeFork(rightFork)) {
+        if (pickUpFork(leftFork)) {
+            if (pickUpFork(rightFork)) {
                 // philosopher has two forks, he can eat
                 portionsToEat--;
                 if ((portionsToEat % 1000) ==0){

@@ -2,37 +2,28 @@ package com.engeto.lekce9;
 
 import java.util.ArrayList;
 
-public class RunnableEatingPhilosophs implements Runnable{
-    private ArrayList<Fork> forks;
-    private ArrayList<Philosopher> philosophers;
-    private int portionsToEate;
-    private int philosopherCount;
+public class RunnableEatingPhilosophs  implements Runnable {
+    private ArrayList<Fork> forks = new ArrayList<>();
+    private ArrayList<Philosopher> philosophers = new ArrayList<>();
+    private final int portionsToEate;
+    private final int philosopherCount;
 
-    public RunnableEatingPhilosophs(int philosopherCount,int portionsToEate) {
+    public RunnableEatingPhilosophs(int philosopherCount, int portionsToEate) {
         this.portionsToEate = portionsToEate;
         this.philosopherCount = philosopherCount;
         setForks();
         setPhilosophers();
     }
 
-    public void setForks () {
-        this.forks = new ArrayList<>();
+    public void setForks() {
         for (int i = 0; i < philosopherCount; i++) {
-            this.forks.add(new Fork(i));
+            forks.add(new Fork());
         }
     }
 
     public void setPhilosophers() {
-        int secondForkIndex;
-        this.philosophers = new ArrayList<>();
         for (int i = 0; i < philosopherCount; i++) {
-            if (i == philosopherCount - 1) {
-                secondForkIndex = 0;
-            } else {
-                secondForkIndex = i + 1;
-            }
-            ;
-            Philosopher philosopher = new Philosopher("filozof" + i, portionsToEate, forks.get(i), forks.get(secondForkIndex));
+            Philosopher philosopher = new Philosopher("filozof" + i, portionsToEate, forks.get(i), forks.get((i + 1) % philosopherCount));
             philosophers.add(philosopher);
         }
     }
@@ -55,8 +46,7 @@ public class RunnableEatingPhilosophs implements Runnable{
 
     @Override
     public void run() {
-                //Thread thread = Thread.currentThread();
-                // System.out.println("thread name: " + thread.getName());
-
+//        Thread thread = Thread.currentThread();
+//        System.out.println("thread name: " + thread.getName());
     }
 }

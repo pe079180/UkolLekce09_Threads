@@ -1,7 +1,5 @@
 package com.engeto.lekce9;
 
-import java.util.ArrayList;
-
 public class Main {
     final static int PORTIONS_TO_EAT = 10000;
     final static int PHILOSOPHER_COUNT = 10;
@@ -10,8 +8,7 @@ public class Main {
 
         RunnableEatingPhilosophs eatingPhilosophers = new RunnableEatingPhilosophs(PHILOSOPHER_COUNT, PORTIONS_TO_EAT);
 
-        for (Philosopher philosopher : eatingPhilosophers.getPhilosophers()
-        ) {
+        for (Philosopher philosopher : eatingPhilosophers.getPhilosophers()) {
             philosopher.start();
         }
     }

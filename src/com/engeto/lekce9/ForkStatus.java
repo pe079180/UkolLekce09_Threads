@@ -1,7 +1,8 @@
 package com.engeto.lekce9;
 
 public enum ForkStatus {
-    FREE("free"), TAKEN("taken");
+    FREE("free"),
+    TAKEN("taken");
     final String description;
 
     ForkStatus(String description) {
@@ -10,6 +11,6 @@ public enum ForkStatus {
 
     @Override
     public String toString() {
-        return description ;
+        return description;
     }
 }
