@@ -12,22 +12,12 @@ public class Philosopher extends Thread {
         this.rightFork = rightFork;
     }
 
-    public synchronized boolean pickUpFork(Fork fork) {
-        //synchronizace tady, nemohou brát 2 současně
-        boolean result = false;
-        if (fork.getForkStatus() == ForkStatus.FREE) {
-            fork.setForkStatus(ForkStatus.TAKEN);
-            result = true;
-        }
-        return result;
-    }
-
     public void eatPortion() {
-        if (pickUpFork(leftFork)) {
-            if (pickUpFork(rightFork)) {
+        if (leftFork.pickUpFork()) {
+            if (rightFork.pickUpFork()) {
                 // philosopher has two forks, he can eat
                 portionsToEat--;
-                if ((portionsToEat % 1000) ==0){
+                if ((portionsToEat % 1000) == 0) {
                     System.out.println(this.getName() + " .. eating, stil have " + portionsToEat + " portions");
                 }
                 try {

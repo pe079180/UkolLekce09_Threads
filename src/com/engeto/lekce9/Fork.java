@@ -14,6 +14,16 @@ public class Fork {
         this.forkStatus = forkStatus;
     }
 
+    public synchronized boolean pickUpFork() {
+        //synchronized, fork can't be picked by two philosophers at the same time
+        boolean result = false;
+        if (getForkStatus() == ForkStatus.FREE) {
+            setForkStatus(ForkStatus.TAKEN);
+            result = true;
+        }
+        return result;
+    }
+
     @Override
     public String toString() {
         return forkStatus.description;

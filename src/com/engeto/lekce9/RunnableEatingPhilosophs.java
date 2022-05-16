@@ -46,7 +46,5 @@ public class RunnableEatingPhilosophs  implements Runnable {
 
     @Override
     public void run() {
-//        Thread thread = Thread.currentThread();
-//        System.out.println("thread name: " + thread.getName());
     }
 }
